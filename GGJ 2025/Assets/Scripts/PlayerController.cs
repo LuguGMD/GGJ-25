@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public GameObject spawn;
 
+    public string team;
+
     [Header("Movement")]
     public float speed;
     public float maxSpeed;
@@ -57,6 +59,11 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
+    }
+
+    private void OnEnable()
+    {
+        GoToSpawn();
     }
 
     public void Move()
@@ -158,6 +165,22 @@ public class PlayerController : MonoBehaviour
     {
         currentState = state;
         stateTimer = Time.time;
+    }
+
+    public void GoToSpawn()
+    {
+        if (spawn != null)
+        {
+            transform.position = spawn.transform.position;
+            transform.rotation = spawn.transform.rotation;
+
+            rb.velocity = Vector3.zero;
+            movement = rb.velocity;
+            knockback = rb.velocity;
+
+            ChangeState(PlayerState.Idle);
+
+        }
     }
 
 }

@@ -83,6 +83,12 @@ public class GameManager : MonoBehaviour
             if (players[i].inputs.playerType == playerType)
             {
                 canCreate = false;
+
+                players[i].GoToSpawn();
+                players[i].gameObject.SetActive(true);
+                players[i].team = "";
+                TeamManager.instance.RemoveTeam(playerType);
+
             }
         }
 
