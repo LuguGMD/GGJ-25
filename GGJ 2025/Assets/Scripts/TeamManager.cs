@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,9 @@ public class TeamManager : MonoBehaviour
 
     public void RemoveTeam(Player player)
     {
-        if(redTeam.Contains(player)) redTeam.Remove(player);
+        StopAllCoroutines();
+
+        if (redTeam.Contains(player)) redTeam.Remove(player);
         if(blueTeam.Contains(player)) blueTeam.Remove(player);
     }
 
@@ -46,9 +49,8 @@ public class TeamManager : MonoBehaviour
             blueTeam.Add(player);
         }
 
-        if(blueTeam.Count > 0 && redTeam.Count > 0)
+        if (blueTeam.Count > 0 && redTeam.Count > 0 && redTeam.Count + blueTeam.Count >= GameManager.instance.players.Count)
         {
-            Debug.Log("Foi");
             StartCoroutine(nameof(StartMatch));
         }
         

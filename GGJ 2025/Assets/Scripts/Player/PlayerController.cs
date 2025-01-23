@@ -168,8 +168,6 @@ public class PlayerController : MonoBehaviour
 
                 pushHitbox.SetActive(true);
 
-                RotateAt(rb.velocity);
-
                 if (Time.time - stateTimer >= pushTime)
                 {
                     bool pushed = pushHitbox.GetComponent<Push>().pushed;
@@ -191,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
                 movement += transform.forward * tackleSpeed * Time.deltaTime;
 
-                RotateAt(rb.velocity);
+                RotateAt(movement);
 
                 if (Time.time - stateTimer >= tackleTime)
                 {
@@ -237,7 +235,10 @@ public class PlayerController : MonoBehaviour
     {
         if(other.CompareTag("Push"))
         {
-            ChangeState(PlayerState.Slipping);
+            if (currentState != PlayerState.Slipping && currentState != PlayerState.Fallen)
+            {
+                ChangeState(PlayerState.Slipping);
+            }
             knockback += other.transform.forward * pushStrength;
         }
         else if(other.CompareTag("Tackle"))

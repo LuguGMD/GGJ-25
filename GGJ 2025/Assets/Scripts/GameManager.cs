@@ -94,6 +94,8 @@ public class GameManager : MonoBehaviour
     {
         bool canCreate = true;
 
+        TeamManager.instance.StopAllCoroutines();
+
         //Checking if player already exists
         for(int i = 0;i < players.Count; ++i)
         {
@@ -124,6 +126,8 @@ public class GameManager : MonoBehaviour
             players[players.Count-1].inputs.playerType = playerType;
 
             if(team != "") players[players.Count-1].team = team;
+
+            Actions.instance.addPlayerAction?.Invoke();
 
         }
     }
