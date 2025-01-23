@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5739832780999897222}
   - component: {fileID: 1158608059758346482}
   - component: {fileID: 4307281760852028942}
+  - component: {fileID: 3926200411303523366}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputs: {fileID: 1158608059758346482}
+  spawn: {fileID: 0}
   speed: 4
   maxSpeed: 30
   friction: 0.5
@@ -186,8 +188,31 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &3926200411303523366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291807359612771233}
+  m_Material: {fileID: 13400000, guid: 84a9219751f95a34a81b90da42e5c7de, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.8343804
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9870459, z: 0}
 --- !u!1 &8511853986373532348
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +224,6 @@ GameObject:
   - component: {fileID: 6507684952907665253}
   - component: {fileID: 4544387691089914179}
   - component: {fileID: 360206116539440656}
-  - component: {fileID: 5669192522388677736}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -272,26 +296,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5669192522388677736
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8511853986373532348}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

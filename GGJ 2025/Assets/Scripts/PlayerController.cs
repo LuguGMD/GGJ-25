@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public PlayerInputs inputs;
     private Rigidbody rb;
 
+    [HideInInspector]
+    public GameObject spawn;
+
     [Header("Movement")]
     public float speed;
     public float maxSpeed;
@@ -66,12 +69,14 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = movement;
 
+
+
+
         Quaternion t = transform.rotation;
-        transform.LookAt(transform.position + rb.velocity.normalized);
+        transform.LookAt(transform.position + new Vector3(rb.velocity.x, 0f, rb.velocity.z));
 
         transform.Rotate(new Vector3(0, transform.rotation.y, 0));
-        transform.Rotate(new Vector3(0, t.y, 0));
-
+      
         t = Quaternion.Lerp(t, transform.rotation, 3f*Time.deltaTime);
 
         transform.rotation = t;
