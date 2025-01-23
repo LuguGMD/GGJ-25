@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redTeam: 
   blueTeam: 
+  startTime: 5
+  matchScene: 2
+  menuScene: 1

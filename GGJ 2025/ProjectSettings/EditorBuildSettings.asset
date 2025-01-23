@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Lugu.unity
+    guid: 572907324878c3a499c1fce84f8b2864
+  - enabled: 1
+    path: Assets/Scenes/Lugu Match.unity
+    guid: 3acfdd0c48eb2164c8dbbd08eace09c3
   m_configObjects: {}

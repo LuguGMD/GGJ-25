@@ -7,6 +7,12 @@ TagManager:
   - Ball
   - BlueGate
   - RedGate
+  - Kick
+  - Push
+  - Tackle
+  - Wall
+  - BlueGoal
+  - RedGoal
   layers:
   - Default
   - TransparentFX

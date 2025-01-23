@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int maxPlayers = 4;
 
     public List<GameObject> spawnPoints;
+    public int blueTeamStartIndex = 2;
 
     public bool inMatch = false;
 
@@ -25,6 +26,22 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if(inMatch)
+        {
+            for (int i = 0; i < TeamManager.instance.redTeam.Count; i++)
+            {
+                SpawnPlayer(TeamManager.instance.redTeam[i], i, "Red");
+            }
+
+            for (int i = 0; i < TeamManager.instance.blueTeam.Count; i++)
+            {
+                SpawnPlayer(TeamManager.instance.blueTeam[i], blueTeamStartIndex + i, "Blue");
+            }
         }
     }
 
@@ -67,13 +84,13 @@ public class GameManager : MonoBehaviour
             //A player pressed something
             if(player != "")
             {
-                SpawnPlayer((Player)Enum.Parse(typeof(Player), player));
+                SpawnPlayer((Player)Enum.Parse(typeof(Player), player), players.Count);
             }
 
         }
     }
 
-    public void SpawnPlayer(Player playerType)
+    public void SpawnPlayer(Player playerType, int spawnInd, string team = "")
     {
         bool canCreate = true;
 
@@ -84,10 +101,13 @@ public class GameManager : MonoBehaviour
             {
                 canCreate = false;
 
-                players[i].GoToSpawn();
-                players[i].gameObject.SetActive(true);
-                players[i].team = "";
-                TeamManager.instance.RemoveTeam(playerType);
+                if (!players[i].gameObject.activeSelf)
+                {
+                    players[i].GoToSpawn();
+                    players[i].gameObject.SetActive(true);
+                    players[i].team = "";
+                    TeamManager.instance.RemoveTeam(playerType);
+                }
 
             }
         }
@@ -95,13 +115,16 @@ public class GameManager : MonoBehaviour
         if(canCreate)
         {
             //Getting spawn point
-            Transform spawn = spawnPoints[players.Count].transform;
+            Transform spawn = spawnPoints[spawnInd].transform;
             //Creating player
             players.Add(Instantiate(playerPrefab, spawn.position, spawn.rotation).GetComponent<PlayerController>());
             //Saving spawn point
             players[players.Count-1].spawn = spawn.gameObject;
             //Passing player type
             players[players.Count-1].inputs.playerType = playerType;
+
+            if(team != "") players[players.Count-1].team = team;
+
         }
     }
 
