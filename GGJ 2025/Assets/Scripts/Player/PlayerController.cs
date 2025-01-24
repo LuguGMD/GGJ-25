@@ -27,11 +27,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     public float speed;
-    public float maxSpeed;
-
-    public float friction;
-
-    public Vector3 knockback;
     public Vector3 movement;
 
     public float rotationSpeed;
@@ -47,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public float pushTime;
     public GameObject pushHitbox;
     public float pushStrength;
+    public float pushSpeedMultiplier;
     [Header("Tackle")]
     public float tackleTime;
     public GameObject tackleHitbox;
@@ -80,19 +76,9 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        movement += rb.velocity;
-
-        movement = Vector3.ClampMagnitude(movement, maxSpeed);
-
-        movement = Vector3.Lerp(movement, new Vector3(0f, rb.velocity.y, 0f), friction * Time.deltaTime);
-
-        movement += knockback;
-
-        rb.velocity = movement;
-
+        rb.AddForce(movement);
 
         movement = Vector3.zero;
-        knockback = Vector3.zero;
     }
 
     public void GetMovement()
@@ -224,7 +210,6 @@ public class PlayerController : MonoBehaviour
 
             rb.velocity = Vector3.zero;
             movement = rb.velocity;
-            knockback = rb.velocity;
 
             ChangeState(PlayerState.Idle);
 
@@ -239,11 +224,11 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeState(PlayerState.Slipping);
             }
-            knockback += other.transform.forward * pushStrength;
+            rb.AddForce(other.transform.forward * (pushStrength + other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * pushSpeedMultiplier), ForceMode.Impulse);
         }
         else if(other.CompareTag("Tackle"))
         {
-            knockback += other.transform.forward * tackleStrength;
+            rb.AddForce(other.transform.forward * tackleStrength, ForceMode.Impulse);
         }
     }
 

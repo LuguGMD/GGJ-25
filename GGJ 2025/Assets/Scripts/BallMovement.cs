@@ -21,7 +21,7 @@ public class BallMovement : MonoBehaviour
                 kickStrength = other.transform.parent.GetComponent<PlayerController>().kickStrength;
             }
 
-            rb.AddForce(other.transform.forward * kickStrength);      
+            rb.AddForce(other.transform.forward * kickStrength, ForceMode.Impulse);      
         }
     }
 }
