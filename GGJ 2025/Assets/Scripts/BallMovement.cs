@@ -19,9 +19,9 @@ public class BallMovement : MonoBehaviour
     }
 
     public void Respawn()
-    {
-        transform.position = spawnPoint;
+    { 
         rb.velocity = Vector3.zero;
+        transform.position = spawnPoint;
         SoundManager.instance.PlaySfx(SFX.Spawn, true);
     }
 

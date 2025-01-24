@@ -6,16 +6,34 @@ public class Goal : MonoBehaviour
 {
     public string team;
 
+    public BallMovement ball;
+
+    private float respawnTime = 1f;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Ball"))
         {
-            BallMovement ball = other.GetComponent<BallMovement>();
+            ball = other.GetComponent<BallMovement>();
             PlayerController player = ball.lastTouch.GetComponent<PlayerController>();
 
-            ball.Respawn();
+            ball.gameObject.SetActive(false);
+            Invoke(nameof(RespawnBall), respawnTime);
 
             GameManager.instance.Score(team);
+        }
+    }
+
+    public void RespawnBall()
+    {
+        ball.gameObject.SetActive(true);
+        ball.Respawn();
+
+        List<PlayerController> players = GameManager.instance.players;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].GoToSpawn();
         }
     }
 }
