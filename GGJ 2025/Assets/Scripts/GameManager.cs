@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     {
         bool canCreate = true;
 
-        TeamManager.instance.StopAllCoroutines();
+        TeamManager.instance.StopTimer();
 
         //Checking if player already exists
         for(int i = 0;i < players.Count; ++i)

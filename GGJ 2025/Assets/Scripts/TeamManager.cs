@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,8 @@ public class TeamManager : MonoBehaviour
     public float startTime;
     public int matchScene;
     public int menuScene;
+
+    public TextMeshProUGUI countdownText;
 
     private void Awake()
     {
@@ -30,7 +33,7 @@ public class TeamManager : MonoBehaviour
 
     public void RemoveTeam(Player player)
     {
-        StopAllCoroutines();
+        StopTimer();
 
         if (redTeam.Contains(player)) redTeam.Remove(player);
         if(blueTeam.Contains(player)) blueTeam.Remove(player);
@@ -38,7 +41,7 @@ public class TeamManager : MonoBehaviour
 
     public void AddTeam(Player player, string team)
     {
-        StopAllCoroutines();
+        StopTimer();
 
         if (team == "Red")
         {
@@ -58,14 +61,28 @@ public class TeamManager : MonoBehaviour
 
     public IEnumerator StartMatch()
     {
+        if (countdownText != null)
+            countdownText?.gameObject.SetActive(true);
+
         for (int i = 0; i < startTime; i++) 
         {
-            Debug.Log(5-i);
+            if (countdownText != null)
+                countdownText.text = (startTime - i - 1).ToString();
+            
+
             yield return new WaitForSeconds(1);
         }
 
         SceneManager.LoadScene(matchScene);
         
+    }
+
+    public void StopTimer()
+    {
+        StopAllCoroutines();
+
+        if(countdownText != null)
+            countdownText?.gameObject.SetActive(false);
     }
 
 }
