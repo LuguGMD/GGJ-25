@@ -2128,9 +2128,9 @@ MonoBehaviour:
   pushHitbox: {fileID: 8396869401682772744}
   pushStrength: 2
   pushSpeedMultiplier: 0.5
-  tackleTime: 1
+  tackleTime: 0.7
   tackleHitbox: {fileID: 6451650243752983659}
-  tackleStrength: 4
+  tackleStrength: 3
   tackleSpeed: 600
   slipTime: 1
   fallenTime: 1.5

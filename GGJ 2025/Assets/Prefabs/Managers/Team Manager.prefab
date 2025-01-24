@@ -47,6 +47,6 @@ MonoBehaviour:
   redTeam: 
   blueTeam: 
   startTime: 6
-  matchScene: 2
-  menuScene: 1
+  matchScene: 1
+  menuScene: 0
   countdownText: {fileID: 0}

@@ -6504,6 +6504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: Red
+  ball: {fileID: 0}
 --- !u!23 &2731359904017349218
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6554,91 +6555,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1026593117780889288, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345033721933099810, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
     - target: {fileID: 3293209033388663317, guid: 10d9f1aa87657c048a6fc9362cf05142,
         type: 3}
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
-    - target: {fileID: 4301574970074192644, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301574970074192644, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 4655994073885087823, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783090296218514690, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783090296218514690, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 4977823832636308010, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4977823832636308010, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 5534219762842950894, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5534219762842950894, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 6066979522128974888, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6066979522128974888, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 6083750407943889036, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445028444095451391, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445028444095451391, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
     - target: {fileID: 7020214431972260492, guid: 10d9f1aa87657c048a6fc9362cf05142,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6688,51 +6609,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064784896621689951, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 7774050207707266814, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7774050207707266814, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 8202400862042246214, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202400862042246214, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 8202400862042246214, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 8279547116631633973, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8279547116631633973, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
-    - target: {fileID: 8720480358516440372, guid: 10d9f1aa87657c048a6fc9362cf05142,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6830,6 +6706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: Blue
+  ball: {fileID: 0}
 --- !u!1 &6066911962091424025
 GameObject:
   m_ObjectHideFlags: 0

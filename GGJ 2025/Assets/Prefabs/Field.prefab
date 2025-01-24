@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4567364255677676086}
   m_Layer: 0
   m_Name: AirWallEdge.LB
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 1605521531241120362}
   m_Layer: 0
   m_Name: AirWallEdgeRB
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 696975789234463725}
   m_Layer: 0
   m_Name: AirWallEdgeRT
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,7 +308,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -413,7 +413,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -518,7 +518,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 4784671270929634974}
   m_Layer: 0
   m_Name: AirWallEdgeB
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -624,7 +624,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 7023229384088215814}
   m_Layer: 0
   m_Name: AirWallEdgeT
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -729,7 +729,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -826,7 +826,7 @@ GameObject:
   - component: {fileID: 1842056039582709155}
   m_Layer: 0
   m_Name: AirWallEdgeLT
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -874,7 +874,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -979,7 +979,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: e19732e956b303e4b9e37a5c1781828f, type: 3}
+  - {fileID: 2100000, guid: b774267387862dc4e8447380e838faa8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
