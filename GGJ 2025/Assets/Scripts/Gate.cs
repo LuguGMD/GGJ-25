@@ -21,6 +21,13 @@ public class Gate : MonoBehaviour
 
             TeamManager.instance.AddTeam(player.inputs.playerType, player.team);
             other.gameObject.SetActive(false);
+
+            SoundManager.instance.PlaySfx(SFX.Select, false);
+
+        }
+        else if(other.CompareTag("Ball"))
+        {
+            other.GetComponent<BallMovement>().Respawn();
         }
     }
 }

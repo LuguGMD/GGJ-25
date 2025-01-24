@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 352008412256591975}
   - component: {fileID: 3696697028140593090}
   - component: {fileID: 1488924654329338632}
-  - component: {fileID: 1016982698346618610}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -84,27 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1016982698346618610
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128509484548799197}
-  m_Material: {fileID: 13400000, guid: 08d6f965ab826194f87b5d5c7280621a, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.19289789
-  m_Center: {x: -0.000000014901161, y: -0.000000029802322, z: 0}
 --- !u!1 &2289840641875341993
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +94,8 @@ GameObject:
   - component: {fileID: 2301012853206888813}
   - component: {fileID: 995183053212556444}
   - component: {fileID: -1676279798752860805}
+  - component: {fileID: 484718095787518905}
+  - component: {fileID: 9222305753031588675}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -178,3 +158,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1881751b71128514bad225c7a6eba0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &484718095787518905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289840641875341993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7adaf5de9601e9146a3b60d1d56dba07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleSize: 1.2
+  returnSpeed: 20
+  mesh: {fileID: 1128509484548799197}
+--- !u!135 &9222305753031588675
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2289840641875341993}
+  m_Material: {fileID: 13400000, guid: 08d6f965ab826194f87b5d5c7280621a, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1989393
+  m_Center: {x: 0.0013996661, y: 0.19943595, z: 0}

@@ -8,7 +8,9 @@ public class Bumper : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ball"))
+        SoundManager.instance.PlaySfx(SFX.Spring, true);
+
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ball"))
         {
             collision.rigidbody.AddForce(transform.forward * impulseStrength, ForceMode.Impulse);
         }

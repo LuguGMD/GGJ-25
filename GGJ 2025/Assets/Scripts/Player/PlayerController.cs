@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [Header("State Machine")]
     public PlayerState currentState;
     private float stateTimer;
+    public float inputDelay;
     [Header("Kick")]
     public float kickTime;
     public GameObject kickHitbox;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        stateTimer = Time.time; 
     }
 
     // Update is called once per frame
@@ -113,12 +115,18 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerState.Idle:
                 GetMovement();
-                CanAction();
+
+                if (Time.time - stateTimer >= inputDelay)
+                {
+                    CanAction();
+                }
 
 
                 if (inputs.horizontal != 0 || inputs.vertical != 0)
                 {
+                    float saveTime = stateTimer;
                     ChangeState(PlayerState.Moving);
+                    stateTimer = saveTime;
                 }
 
                 break;
@@ -132,11 +140,17 @@ public class PlayerController : MonoBehaviour
 
             case PlayerState.Moving:
                 GetMovement();
-                CanAction();
+                if (Time.time - stateTimer >= inputDelay)
+                {
+                    CanAction();
+                }
+                
 
                 if (inputs.horizontal == 0 && inputs.vertical == 0)
                 {
+                    float saveTime = stateTimer;
                     ChangeState(PlayerState.Idle);
+                    stateTimer = saveTime;
                 }
 
                 break;
@@ -199,6 +213,14 @@ public class PlayerController : MonoBehaviour
 
         currentState = state;
         stateTimer = Time.time;
+
+        switch(currentState)
+        {
+            case PlayerState.Slipping:
+                SoundManager.instance.PlaySfx(SFX.Slip,true);
+                break;
+
+        }
     }
 
     public void GoToSpawn()
@@ -224,11 +246,24 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeState(PlayerState.Slipping);
             }
+            else
+            {
+                SoundManager.instance.PlaySfx(SFX.SoftImpact, true);
+            }
             rb.AddForce(other.transform.forward * (pushStrength + other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * pushSpeedMultiplier), ForceMode.Impulse);
+            
         }
         else if(other.CompareTag("Tackle"))
         {
             rb.AddForce(other.transform.forward * tackleStrength, ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            SoundManager.instance.PlaySfx(SFX.SoftImpact, true);
         }
     }
 
