@@ -52,4 +52,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  blueTeamStartIndex: 3
   inMatch: 0
+  bluePoints: 0
+  redPoints: 0
+  blueColors:
+  - {fileID: 2100000, guid: fdf0b26c9870bec4d94b8aa494332267, type: 2}
+  - {fileID: 2100000, guid: 329115e9b9eff3f498953669efe10424, type: 2}
+  - {fileID: 2100000, guid: 13dc3646048b037428f2451870504ce9, type: 2}
+  redColors:
+  - {fileID: 2100000, guid: 0b571e722bc582c448eb05edfbcaaff0, type: 2}
+  - {fileID: 2100000, guid: 8509d54d9eb133443812c57169b17df8, type: 2}
+  - {fileID: 2100000, guid: 48a874c64e2f5b84da0404b7d7db6524, type: 2}
+  bluePointsText: {fileID: 0}
+  redPointsText: {fileID: 0}

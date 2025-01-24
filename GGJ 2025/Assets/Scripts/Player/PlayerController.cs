@@ -23,7 +23,10 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public GameObject spawn;
 
+    public Material material;
+
     public string team;
+    public int id;
 
     [Header("Movement")]
     public float speed;

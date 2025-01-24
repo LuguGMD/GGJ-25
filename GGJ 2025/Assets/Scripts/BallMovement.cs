@@ -9,6 +9,8 @@ public class BallMovement : MonoBehaviour
 
     private Vector3 spawnPoint;
 
+    public GameObject lastTouch;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,6 +34,8 @@ public class BallMovement : MonoBehaviour
                 kickStrength = other.transform.parent.GetComponent<PlayerController>().kickStrength;
             }
 
+            lastTouch = other.gameObject;
+
             rb.AddForce(other.transform.forward * kickStrength, ForceMode.Impulse);
 
             SoundManager.instance.PlaySfx(SFX.Kick, true);
@@ -46,6 +50,10 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             SoundManager.instance.PlaySfx(SFX.SoftImpact, true);
+        }
+        else if(collision.gameObject.CompareTag("Player"))
+        {
+            lastTouch = collision.gameObject;
         }
     }
 }

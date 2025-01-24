@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,9 +14,20 @@ public class GameManager : MonoBehaviour
     private int maxPlayers = 4;
 
     public List<GameObject> spawnPoints;
-    public int blueTeamStartIndex = 2;
+    public int blueTeamStartIndex = 3;
 
+    [Header("Match")]
     public bool inMatch = false;
+    public int bluePoints;
+    public int redPoints;
+
+    public List<Material> blueColors;
+    public List<Material> redColors;
+
+    public TextMeshProUGUI bluePointsText;
+    public TextMeshProUGUI redPointsText;
+
+
 
     private void Awake()
     {
@@ -35,12 +47,12 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < TeamManager.instance.redTeam.Count; i++)
             {
-                SpawnPlayer(TeamManager.instance.redTeam[i], i, "Red");
+                SpawnPlayer(TeamManager.instance.redTeam[i], i, "Red", i);
             }
 
             for (int i = 0; i < TeamManager.instance.blueTeam.Count; i++)
             {
-                SpawnPlayer(TeamManager.instance.blueTeam[i], blueTeamStartIndex + i, "Blue");
+                SpawnPlayer(TeamManager.instance.blueTeam[i], blueTeamStartIndex + i, "Blue", i);
             }
         }
     }
@@ -90,7 +102,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SpawnPlayer(Player playerType, int spawnInd, string team = "")
+    public void SpawnPlayer(Player playerType, int spawnInd, string team = "", int id = 0)
     {
         bool canCreate = true;
 
@@ -108,6 +120,7 @@ public class GameManager : MonoBehaviour
                     players[i].GoToSpawn();
                     players[i].gameObject.SetActive(true);
                     players[i].team = "";
+                    players[i].id = id;
                     TeamManager.instance.RemoveTeam(playerType);
                 }
 
@@ -125,10 +138,36 @@ public class GameManager : MonoBehaviour
             //Passing player type
             players[players.Count-1].inputs.playerType = playerType;
 
-            if(team != "") players[players.Count-1].team = team;
+            if (team != "")
+            {
+                players[players.Count - 1].team = team;
+                players[players.Count - 1].id = id;
+
+                Material mat = redColors[id];
+
+                if (team == "Blue") mat = blueColors[id];
+
+                players[players.Count - 1].material = mat;
+
+                players[players.Count - 1].GetComponent<PlayerColor>().ChangeColor();
+            }
 
             Actions.instance.addPlayerAction?.Invoke();
 
+        }
+    }
+
+    public void Score(string team)
+    {
+        if(team == "Red")
+        {
+            redPoints++;
+            redPointsText.text = redPoints.ToString();
+        }
+        else if(team == "Blue")
+        {
+            bluePoints++;
+            bluePointsText.text = bluePoints.ToString();
         }
     }
 
