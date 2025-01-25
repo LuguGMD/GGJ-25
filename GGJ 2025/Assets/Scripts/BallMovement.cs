@@ -7,6 +7,8 @@ public class BallMovement : MonoBehaviour
     private Rigidbody rb;
     private float kickStrength = 0;
 
+    private float startSpeed = 1.6f;
+
     private Vector3 spawnPoint;
 
     public GameObject lastTouch;
@@ -18,11 +20,28 @@ public class BallMovement : MonoBehaviour
         spawnPoint = transform.position;
     }
 
+    private void OnEnable()
+    {
+        Actions.instance.restartedMatch += LaunchToTeam;
+    }
+
+    private void OnDisable()
+    {
+        Actions.instance.restartedMatch -= LaunchToTeam;
+    }
+
     public void Respawn()
     { 
         rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         transform.position = spawnPoint;
         SoundManager.instance.PlaySfx(SFX.Spawn, true);
+    }
+
+    public void LaunchToTeam(string team)
+    {
+        float force = team == "Red" ? startSpeed : -startSpeed;
+        rb.AddForce(Vector3.right * force, ForceMode.Impulse);
     }
 
     private void OnTriggerEnter(Collider other)

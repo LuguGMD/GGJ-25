@@ -21,6 +21,7 @@ public class Goal : MonoBehaviour
             Invoke(nameof(RespawnBall), respawnTime);
 
             GameManager.instance.Score(team);
+            Actions.instance.goalScored?.Invoke(team);
         }
     }
 
@@ -35,5 +36,8 @@ public class Goal : MonoBehaviour
         {
             players[i].GoToSpawn();
         }
+
+        Actions.instance.restartedMatch?.Invoke(team);
+
     }
 }

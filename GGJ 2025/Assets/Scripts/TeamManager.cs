@@ -85,4 +85,9 @@ public class TeamManager : MonoBehaviour
             countdownText?.gameObject.SetActive(false);
     }
 
+    public void EndMatch()
+    {
+        SceneManager.LoadScene(menuScene);
+    }
+
 }

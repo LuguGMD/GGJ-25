@@ -20,4 +20,6 @@ public class Actions
     }
 
     public Action addPlayerAction;
+    public Action<string> goalScored;
+    public Action<string> restartedMatch;
 }

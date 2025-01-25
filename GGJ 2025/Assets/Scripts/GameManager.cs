@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI bluePointsText;
     public TextMeshProUGUI redPointsText;
 
+    public int pointsToWin = 3;
 
 
     private void Awake()
@@ -159,16 +160,22 @@ public class GameManager : MonoBehaviour
 
     public void Score(string team)
     {
-        if(team == "Red")
+        if(team == "Blue")
         {
             redPoints++;
             redPointsText.text = redPoints.ToString();
         }
-        else if(team == "Blue")
+        else if(team == "Red")
         {
             bluePoints++;
             bluePointsText.text = bluePoints.ToString();
         }
+
+        if(bluePoints >= pointsToWin || redPoints >= pointsToWin)
+        {
+            TeamManager.instance.Invoke(nameof(TeamManager.instance.EndMatch), 0.5f);
+        }
+
     }
 
 }
