@@ -13,7 +13,7 @@ public class PlayerColor : MonoBehaviour
     {
         for (int i = 0; i < mesh.Count; i++)
         {
-            mesh[i].materials = new Material[2] { mesh[i].material, pc.material };
+            mesh[i].materials = new Material[3] { mesh[i].material, mesh[i].materials[2], pc.material };
         }
     }
 
