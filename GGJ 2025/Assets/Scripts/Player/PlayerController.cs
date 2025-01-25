@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInputs inputs;
     private Rigidbody rb;
+    public List<Rigidbody> rbRagdoll;
+    private bool ragdollActive = false;
 
     [HideInInspector]
     public GameObject spawn;
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        stateTimer = Time.time; 
+        stateTimer = Time.time;
     }
 
     // Update is called once per frame
@@ -71,6 +73,11 @@ public class PlayerController : MonoBehaviour
         StateMachine();
 
         Move();
+
+        if(ragdollActive)
+        {
+            AlignHipToPosition();
+        }
 
     }
 
@@ -203,6 +210,7 @@ public class PlayerController : MonoBehaviour
                 if (Time.time - stateTimer >= fallenTime)
                 {
                     ChangeState(PlayerState.Idle);
+                    DisableRagdoll();
                 }
                 break;
         }
@@ -221,6 +229,7 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerState.Slipping:
                 SoundManager.instance.PlaySfx(SFX.Slip,true);
+                EnableRagdoll();
                 break;
 
         }
@@ -237,9 +246,55 @@ public class PlayerController : MonoBehaviour
             movement = rb.velocity;
 
             ChangeState(PlayerState.Idle);
+            DisableRagdoll();
 
         }
     }
+
+    public void DisableRagdoll()
+    {
+        AlignPositionToHip();
+
+        for (int i = 0; i < rbRagdoll.Count; i++)
+        {
+            rbRagdoll[i].isKinematic = true;
+        }
+        ragdollActive = false;
+    }
+
+    public void EnableRagdoll()
+    {
+        for (int i = 0; i < rbRagdoll.Count; i++)
+        {
+            rbRagdoll[i].isKinematic = false;
+        }
+        ragdollActive = true;
+    }
+
+    public void AlignPositionToHip()
+    {
+        Vector3 originalHipPos = rbRagdoll[0].transform.position;
+        Vector3 originalChestPos = rbRagdoll[1].transform.position;
+        transform.position = originalHipPos;
+
+        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo))
+        {
+            transform.position = new Vector3(transform.position.x, hitInfo.point.y, transform.position.z);
+        }
+
+        rbRagdoll[0].transform.position = originalHipPos;
+        rbRagdoll[1].transform.position = originalChestPos;
+    }
+
+    public void AlignHipToPosition()
+    {
+        Vector3 originalHipPos = rbRagdoll[0].transform.localPosition;
+        Vector3 originalChestPos = rbRagdoll[1].transform.localPosition;
+
+        rbRagdoll[0].transform.localPosition = new Vector3(0f, originalHipPos.y, 0f);
+        rbRagdoll[1].transform.localPosition = new Vector3(0f, originalChestPos.y, 0f);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
