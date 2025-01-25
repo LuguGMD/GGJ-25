@@ -253,22 +253,22 @@ public class PlayerController : MonoBehaviour
 
     public void DisableRagdoll()
     {
-        AlignPositionToHip();
+        //AlignPositionToHip();
 
         for (int i = 0; i < rbRagdoll.Count; i++)
         {
-            rbRagdoll[i].isKinematic = true;
+            //[i].isKinematic = true;
         }
-        ragdollActive = false;
+        //ragdollActive = false;
     }
 
     public void EnableRagdoll()
     {
         for (int i = 0; i < rbRagdoll.Count; i++)
         {
-            rbRagdoll[i].isKinematic = false;
+            //rbRagdoll[i].isKinematic = false;
         }
-        ragdollActive = true;
+        //ragdollActive = true;
     }
 
     public void AlignPositionToHip()
