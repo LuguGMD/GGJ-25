@@ -54,8 +54,7 @@ public class BallMovement : MonoBehaviour
             }
 
             lastTouch = other.gameObject;
-
-            rb.AddForce(other.transform.forward * kickStrength, ForceMode.Impulse);
+            rb.AddForce(other.transform.forward * (kickStrength + other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude), ForceMode.Impulse);
 
             SoundManager.instance.PlaySfx(SFX.Kick, true);
         }

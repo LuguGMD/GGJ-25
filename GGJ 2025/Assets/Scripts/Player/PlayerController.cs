@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         if(ragdollActive)
         {
-            AlignHipToPosition();
+            //AlignHipToPosition();
         }
 
     }
@@ -88,7 +88,18 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        rb.AddForce(movement);
+        
+
+        if (ragdollActive)
+        {
+            rbRagdoll[0].AddForce(movement);
+            rbRagdoll[1].AddForce(movement);
+            rb.velocity = Vector3.zero;
+        }
+        else
+        {
+            rb.AddForce(movement);
+        }
 
         movement = Vector3.zero;
     }
@@ -252,23 +263,32 @@ public class PlayerController : MonoBehaviour
     }
 
     public void DisableRagdoll()
-    {
-        //AlignPositionToHip();
+    {/*
+        GetComponent<CapsuleCollider>().enabled = true;
+
+        AlignPositionToHip();
 
         for (int i = 0; i < rbRagdoll.Count; i++)
         {
-            //[i].isKinematic = true;
+            rbRagdoll[i].isKinematic = true;
         }
-        //ragdollActive = false;
+        ragdollActive = false;*/
     }
 
     public void EnableRagdoll()
     {
+        /*
+        GetComponent<CapsuleCollider>().enabled = false;
+
         for (int i = 0; i < rbRagdoll.Count; i++)
         {
-            //rbRagdoll[i].isKinematic = false;
+            rbRagdoll[i].isKinematic = false;
         }
-        //ragdollActive = true;
+
+        rbRagdoll[0].velocity = rb.velocity;
+        rbRagdoll[1].velocity = rb.velocity;
+
+        ragdollActive = true;*/
     }
 
     public void AlignPositionToHip()
@@ -308,8 +328,12 @@ public class PlayerController : MonoBehaviour
             {
                 SoundManager.instance.PlaySfx(SFX.SoftImpact, true);
             }
-            rb.AddForce(other.transform.forward * (pushStrength + other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * pushSpeedMultiplier), ForceMode.Impulse);
-            
+
+            Vector3 force = other.transform.forward * (pushStrength + other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * pushSpeedMultiplier);
+
+            rb.AddForce(force, ForceMode.Impulse);
+            rbRagdoll[0].AddForce(force , ForceMode.Impulse);
+            rbRagdoll[1].AddForce(force, ForceMode.Impulse);
         }
         else if(other.CompareTag("Tackle"))
         {

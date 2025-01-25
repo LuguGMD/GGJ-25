@@ -14,5 +14,9 @@ public class Bumper : MonoBehaviour
         {
             collision.rigidbody.AddForce(transform.forward * impulseStrength, ForceMode.Impulse);
         }
+        else if(collision.gameObject.CompareTag("Ragdoll"))
+        {
+            collision.rigidbody.AddForce(transform.forward * impulseStrength * 10, ForceMode.Impulse);
+        }
     }
 }
