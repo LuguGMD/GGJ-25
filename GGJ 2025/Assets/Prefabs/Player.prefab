@@ -3076,7 +3076,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 08ddd4884a4b826449d72a3080aef291, type: 2}
   team: 
   id: 0
-  speed: 100
+  speed: 200
   movement: {x: 0, y: 0, z: 0}
   rotationSpeed: 4
   currentState: 0
@@ -3088,10 +3088,11 @@ MonoBehaviour:
   pushHitbox: {fileID: 8396869401682772744}
   pushStrength: 100
   pushSpeedMultiplier: 0.5
-  tackleTime: 0.7
+  tackleTime: 0.4
   tackleHitbox: {fileID: 6451650243752983659}
   tackleStrength: 3
-  tackleSpeed: 600
+  tackleSpeed: 10
+  tackleStopForce: 0.65
   slipTime: 1
   fallenTime: 1.5
 --- !u!114 &1158608059758346482

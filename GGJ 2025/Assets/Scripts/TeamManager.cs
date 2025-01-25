@@ -61,8 +61,10 @@ public class TeamManager : MonoBehaviour
 
     public IEnumerator StartMatch()
     {
-        if (countdownText != null)
-            countdownText?.gameObject.SetActive(true);
+        if (countdownText == null)
+            countdownText = GameObject.Find("MainUI").transform.GetChild(1).GetComponent<TextMeshProUGUI>();      
+
+        countdownText?.gameObject.SetActive(true);
 
         for (int i = 0; i < startTime; i++) 
         {

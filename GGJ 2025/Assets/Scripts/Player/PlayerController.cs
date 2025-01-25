@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public GameObject tackleHitbox;
     public float tackleStrength;
     public float tackleSpeed;
+    [Range(0f, 1f)]
+    public float tackleStopForce;
     [Header("Others")]
     public float slipTime;
     public float fallenTime;
@@ -208,12 +210,11 @@ public class PlayerController : MonoBehaviour
 
                 tackleHitbox.SetActive(true);
 
-                movement += transform.forward * tackleSpeed * Time.deltaTime;
-
-                RotateAt(movement);
+                RotateAt(rb.velocity);
 
                 if (Time.time - stateTimer >= tackleTime)
                 {
+                    rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(0f, rb.velocity.y, 0f), tackleStopForce);
                     ChangeState(PlayerState.Idle);
                 }
                 break;
@@ -242,7 +243,9 @@ public class PlayerController : MonoBehaviour
                 SoundManager.instance.PlaySfx(SFX.Slip,true);
                 EnableRagdoll();
                 break;
-
+            case PlayerState.Tackling:
+                rb.AddForce(transform.forward * tackleSpeed, ForceMode.Impulse);
+                break;
         }
     }
 
@@ -328,8 +331,10 @@ public class PlayerController : MonoBehaviour
             {
                 SoundManager.instance.PlaySfx(SFX.SoftImpact, true);
             }
+            float speedForce = other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude;
+            if (ragdollActive) speedForce *= pushSpeedMultiplier;
 
-            Vector3 force = other.transform.forward * (pushStrength + other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude * pushSpeedMultiplier);
+            Vector3 force = other.transform.forward * (pushStrength + speedForce);
 
             rb.AddForce(force, ForceMode.Impulse);
             rbRagdoll[0].AddForce(force , ForceMode.Impulse);
