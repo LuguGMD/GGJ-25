@@ -3103,11 +3103,11 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   rotationSpeed: 4
   currentState: 0
-  inputDelay: 0.6
+  inputDelay: 0.5
   kickTime: 0.2
   kickHitbox: {fileID: 2107156355235327340}
   kickStrength: 6
-  pushTime: 0.5
+  pushTime: 0.3
   pushHitbox: {fileID: 8396869401682772744}
   pushStrength: 5
   pushSpeedMultiplier: 0.5

@@ -359,7 +359,7 @@ public class PlayerController : MonoBehaviour
             Vector3 force = other.transform.forward * (pushStrength + speedForce);
 
             if (ragdollActive)
-                force *= 30;
+                force *= 24;
 
             rb.AddForce(force, ForceMode.Impulse);
             rbRagdoll[0].AddForce(force , ForceMode.Impulse);
