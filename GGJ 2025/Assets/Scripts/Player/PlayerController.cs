@@ -269,6 +269,8 @@ public class PlayerController : MonoBehaviour
     {
         if (spawn != null)
         {
+            DisableRagdoll();
+
             transform.position = spawn.transform.position;
             transform.rotation = spawn.transform.rotation;
 
@@ -276,7 +278,6 @@ public class PlayerController : MonoBehaviour
             movement = rb.velocity;
 
             ChangeState(PlayerState.Idle);
-            DisableRagdoll();
 
         }
     }
@@ -300,6 +301,8 @@ public class PlayerController : MonoBehaviour
 
     public void EnableRagdoll()
     {
+        AlignPositionToHip();
+
         anim.enabled = false;
         GetComponent<CapsuleCollider>().isTrigger = true;
 
@@ -361,10 +364,11 @@ public class PlayerController : MonoBehaviour
 
             Vector3 force = other.transform.forward * (pushStrength + speedForce);
 
+            rb.AddForce(force, ForceMode.Impulse);
+
             if (ragdollActive)
                 force *= 10;
 
-            rb.AddForce(force, ForceMode.Impulse);
             rbRagdoll[0].AddForce(force , ForceMode.Impulse);
             rbRagdoll[1].AddForce(force, ForceMode.Impulse);
         }
