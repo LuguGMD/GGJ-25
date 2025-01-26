@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Slipping:
                 if (Time.time - stateTimer >= slipTime)
                 {
+                    DisableRagdoll();
                     ChangeState(PlayerState.Fallen);
                 }
                 break;
@@ -223,7 +224,6 @@ public class PlayerController : MonoBehaviour
                 if (Time.time - stateTimer >= fallenTime)
                 {
                     ChangeState(PlayerState.Moving);
-                    DisableRagdoll();
                 }
                 break;
         }
@@ -249,6 +249,7 @@ public class PlayerController : MonoBehaviour
                 ChangeAnimation("Tackle");
                 break;
             case PlayerState.Fallen:
+                ChangeAnimation("Standup");
                 break;
             case PlayerState.Moving:
                 ChangeAnimation("Run");
@@ -279,6 +280,7 @@ public class PlayerController : MonoBehaviour
 
             ChangeState(PlayerState.Idle);
 
+            ChangeAnimation("Run");
         }
     }
 
@@ -294,9 +296,6 @@ public class PlayerController : MonoBehaviour
             rbRagdoll[i].isKinematic = true;
         }
         ragdollActive = false;
-
-        //Change to get up animation
-        ChangeAnimation("Run");
     }
 
     public void EnableRagdoll()

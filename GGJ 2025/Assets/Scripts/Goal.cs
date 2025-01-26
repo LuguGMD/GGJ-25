@@ -8,7 +8,7 @@ public class Goal : MonoBehaviour
 
     public BallMovement ball;
 
-    private float respawnTime = 1f;
+    public float respawnTime = 1f;
 
     private void OnTriggerEnter(Collider other)
     {

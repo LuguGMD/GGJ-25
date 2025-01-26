@@ -3116,8 +3116,8 @@ MonoBehaviour:
   tackleStrength: 3
   tackleSpeed: 10
   tackleStopForce: 0.5
-  slipTime: 1
-  fallenTime: 1.5
+  slipTime: 2.5
+  fallenTime: 0.8
 --- !u!114 &1158608059758346482
 MonoBehaviour:
   m_ObjectHideFlags: 0
