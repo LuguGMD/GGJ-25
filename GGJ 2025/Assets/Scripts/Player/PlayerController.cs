@@ -16,6 +16,7 @@ public enum PlayerState
 [RequireComponent(typeof(PlayerInputs), typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    public Animator anim;
 
     public PlayerInputs inputs;
     private Rigidbody rb;
@@ -163,11 +164,11 @@ public class PlayerController : MonoBehaviour
 
             case PlayerState.Moving:
                 GetMovement();
+
                 if (Time.time - stateTimer >= inputDelay)
                 {
                     CanAction();
                 }
-                
 
                 if (inputs.horizontal == 0 && inputs.vertical == 0)
                 {
@@ -183,7 +184,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Time.time - stateTimer >= kickTime)
                 {
-                    ChangeState(PlayerState.Idle);
+                    ChangeState(PlayerState.Moving);
                 }
                 break;
 
@@ -197,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
                     if (pushed)
                     {
-                        ChangeState(PlayerState.Idle);
+                        ChangeState(PlayerState.Moving);
                     }
                     else
                     {
@@ -215,7 +216,7 @@ public class PlayerController : MonoBehaviour
                 if (Time.time - stateTimer >= tackleTime)
                 {
                     rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(0f, rb.velocity.y, 0f), tackleStopForce);
-                    ChangeState(PlayerState.Idle);
+                    ChangeState(PlayerState.Moving);
                 }
                 break;
             case PlayerState.Fallen:
@@ -245,6 +246,21 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Tackling:
                 rb.AddForce(transform.forward * tackleSpeed, ForceMode.Impulse);
+                ChangeAnimation("Tackle");
+                break;
+            case PlayerState.Fallen:
+                break;
+            case PlayerState.Moving:
+                ChangeAnimation("Run");
+                break;
+            case PlayerState.Idle:
+                ChangeAnimation("Idle");
+                break;
+            case PlayerState.Kicking:
+                ChangeAnimation("Kick");
+                break;
+            case PlayerState.Pushing:
+                ChangeAnimation("Push");
                 break;
         }
     }
@@ -266,8 +282,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public void DisableRagdoll()
-    {/*
-        GetComponent<CapsuleCollider>().enabled = true;
+    {
+        anim.enabled = true;
+        GetComponent<CapsuleCollider>().isTrigger = false;
 
         AlignPositionToHip();
 
@@ -275,23 +292,23 @@ public class PlayerController : MonoBehaviour
         {
             rbRagdoll[i].isKinematic = true;
         }
-        ragdollActive = false;*/
+        ragdollActive = false;
     }
 
     public void EnableRagdoll()
     {
-        /*
-        GetComponent<CapsuleCollider>().enabled = false;
+        anim.enabled = false;
+        GetComponent<CapsuleCollider>().isTrigger = true;
 
         for (int i = 0; i < rbRagdoll.Count; i++)
         {
             rbRagdoll[i].isKinematic = false;
         }
 
-        rbRagdoll[0].velocity = rb.velocity;
-        rbRagdoll[1].velocity = rb.velocity;
+        rbRagdoll[0].velocity = rb.velocity * 3;
+        rbRagdoll[1].velocity = rb.velocity * 3;
 
-        ragdollActive = true;*/
+        ragdollActive = true;
     }
 
     public void AlignPositionToHip()
@@ -318,6 +335,10 @@ public class PlayerController : MonoBehaviour
         rbRagdoll[1].transform.localPosition = new Vector3(0f, originalChestPos.y, 0f);
     }
 
+    public void ChangeAnimation(string animation)
+    {
+        anim.SetTrigger("Trigger" + animation);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -331,10 +352,14 @@ public class PlayerController : MonoBehaviour
             {
                 SoundManager.instance.PlaySfx(SFX.SoftImpact, true);
             }
+
             float speedForce = other.transform.parent.GetComponent<Rigidbody>().velocity.magnitude;
-            if (ragdollActive) speedForce *= pushSpeedMultiplier;
+            speedForce *= pushSpeedMultiplier;
 
             Vector3 force = other.transform.forward * (pushStrength + speedForce);
+
+            if (ragdollActive)
+                force *= 30;
 
             rb.AddForce(force, ForceMode.Impulse);
             rbRagdoll[0].AddForce(force , ForceMode.Impulse);
