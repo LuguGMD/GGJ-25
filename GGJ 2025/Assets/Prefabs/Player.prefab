@@ -3104,7 +3104,7 @@ MonoBehaviour:
   rotationSpeed: 4
   currentState: 0
   inputDelay: 0.5
-  kickTime: 0.2
+  kickTime: 0.3
   kickHitbox: {fileID: 2107156355235327340}
   kickStrength: 6
   pushTime: 0.3

@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Fallen:
                 if (Time.time - stateTimer >= fallenTime)
                 {
-                    ChangeState(PlayerState.Idle);
+                    ChangeState(PlayerState.Moving);
                     DisableRagdoll();
                 }
                 break;
