@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redTeam: 
   blueTeam: 
-  startTime: 6
+  startTime: 4
   matchScene: 1
   menuScene: 0
   countdownText: {fileID: 0}
