@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayer()
     {
-        if(players.Count < maxPlayers)
+        if(players.Count <= maxPlayers)
         {
             string player = "";
 

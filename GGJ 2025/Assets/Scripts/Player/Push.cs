@@ -5,7 +5,7 @@ using UnityEngine;
 public class Push : MonoBehaviour
 {
     public bool pushed = false;
-    private void OnEnable()
+    private void OnDisable()
     {
         pushed = false;
     }

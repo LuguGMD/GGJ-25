@@ -89,6 +89,8 @@ public class TeamManager : MonoBehaviour
 
     public void EndMatch()
     {
+        redTeam.Clear();
+        blueTeam.Clear();
         SceneManager.LoadScene(menuScene);
     }
 

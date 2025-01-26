@@ -293,6 +293,9 @@ public class PlayerController : MonoBehaviour
             rbRagdoll[i].isKinematic = true;
         }
         ragdollActive = false;
+
+        //Change to get up animation
+        ChangeAnimation("Run");
     }
 
     public void EnableRagdoll()
@@ -359,7 +362,7 @@ public class PlayerController : MonoBehaviour
             Vector3 force = other.transform.forward * (pushStrength + speedForce);
 
             if (ragdollActive)
-                force *= 24;
+                force *= 10;
 
             rb.AddForce(force, ForceMode.Impulse);
             rbRagdoll[0].AddForce(force , ForceMode.Impulse);
