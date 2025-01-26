@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Slipping:
                 if (Time.time - stateTimer >= slipTime)
                 {
+                    DisableRagdoll();
                     ChangeState(PlayerState.Fallen);
                 }
                 break;
@@ -222,8 +223,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Fallen:
                 if (Time.time - stateTimer >= fallenTime)
                 {
-                    ChangeState(PlayerState.Idle);
-                    DisableRagdoll();
+                    ChangeState(PlayerState.Moving);
                 }
                 break;
         }
@@ -249,6 +249,7 @@ public class PlayerController : MonoBehaviour
                 ChangeAnimation("Tackle");
                 break;
             case PlayerState.Fallen:
+                ChangeAnimation("Standup");
                 break;
             case PlayerState.Moving:
                 ChangeAnimation("Run");
@@ -269,6 +270,8 @@ public class PlayerController : MonoBehaviour
     {
         if (spawn != null)
         {
+            DisableRagdoll();
+
             transform.position = spawn.transform.position;
             transform.rotation = spawn.transform.rotation;
 
@@ -276,8 +279,8 @@ public class PlayerController : MonoBehaviour
             movement = rb.velocity;
 
             ChangeState(PlayerState.Idle);
-            DisableRagdoll();
 
+            ChangeAnimation("Run");
         }
     }
 
@@ -293,13 +296,12 @@ public class PlayerController : MonoBehaviour
             rbRagdoll[i].isKinematic = true;
         }
         ragdollActive = false;
-
-        //Change to get up animation
-        ChangeAnimation("Run");
     }
 
     public void EnableRagdoll()
     {
+        AlignPositionToHip();
+
         anim.enabled = false;
         GetComponent<CapsuleCollider>().isTrigger = true;
 
@@ -361,10 +363,11 @@ public class PlayerController : MonoBehaviour
 
             Vector3 force = other.transform.forward * (pushStrength + speedForce);
 
+            rb.AddForce(force, ForceMode.Impulse);
+
             if (ragdollActive)
                 force *= 10;
 
-            rb.AddForce(force, ForceMode.Impulse);
             rbRagdoll[0].AddForce(force , ForceMode.Impulse);
             rbRagdoll[1].AddForce(force, ForceMode.Impulse);
         }
