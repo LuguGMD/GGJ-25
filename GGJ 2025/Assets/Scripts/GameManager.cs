@@ -154,7 +154,6 @@ public class GameManager : MonoBehaviour
             }
 
             Actions.instance.addPlayerAction?.Invoke();
-
         }
     }
 

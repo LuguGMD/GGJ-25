@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 public class InteractiveFoam : MonoBehaviour
 {
     private VisualEffect visualEffect;
-    private Transform[] playerTransforms;
+    private List<Transform> playerTransforms = new List<Transform>();
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class InteractiveFoam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < playerTransforms.Length; i++)
+        for (int i = 0; i < playerTransforms.Count; i++)
         {
             if (playerTransforms[i] != null)
             {
@@ -35,4 +35,28 @@ public class InteractiveFoam : MonoBehaviour
             }
         }
     }
+
+    private void OnEnable()
+    {
+        Actions.instance.addPlayerAction += UpdatePlayerList;
+    }
+
+    private void OnDisable()
+    {
+        Actions.instance.addPlayerAction -= UpdatePlayerList;
+    }
+
+    public void UpdatePlayerList()
+    {
+        List<PlayerController> players = GameManager.instance.players;
+
+        playerTransforms.Clear();
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i] != null)
+            {
+                playerTransforms.Add(players[i].transform);
+            }
+        }
+    } 
 }
