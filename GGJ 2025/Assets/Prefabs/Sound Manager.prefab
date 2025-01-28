@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 184dc408457e123459fc7ebdbc6af26c, type: 3}
   - {fileID: 8300000, guid: 4a5eeda98eb84d3448e581eaf19cb60b, type: 3}
   - {fileID: 8300000, guid: e37a6782b84bc81408031748c5609b77, type: 3}
+  - {fileID: 8300000, guid: 570de3026660cab4b8a418eee2a99747, type: 3}
   mscClips: []
   sfxSource: {fileID: 5835486426875204315}
   mscSource: {fileID: 7089882025601725667}

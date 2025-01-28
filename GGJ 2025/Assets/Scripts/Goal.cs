@@ -14,6 +14,8 @@ public class Goal : MonoBehaviour
     {
         if(other.CompareTag("Ball"))
         {
+            SoundManager.instance.PlaySfx(SFX.Goal, true);
+
             ball = other.GetComponent<BallMovement>();
             PlayerController player = ball.lastTouch.GetComponent<PlayerController>();
 

@@ -9,7 +9,8 @@ public enum SFX
     Slip,
     Select,
     SoftImpact,
-    Spring
+    Spring,
+    Goal
 }
 
 public class SoundManager : MonoBehaviour
