@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
     [Header("Others")]
     public float slipTime;
     public float fallenTime;
+    [Header("VFX")]
+    public ParticleSystem bubbleVFX;
 
     private void Start()
     {
@@ -296,10 +298,15 @@ public class PlayerController : MonoBehaviour
             rbRagdoll[i].isKinematic = true;
         }
         ragdollActive = false;
+
+        Invoke("EnableBubbleVFX", 0.1f);
     }
 
     public void EnableRagdoll()
     {
+        var emission = bubbleVFX.emission;
+        emission.enabled = false;
+
         AlignPositionToHip();
 
         anim.enabled = false;
@@ -385,4 +392,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    private void EnableBubbleVFX()
+    {
+        var emission = bubbleVFX.emission;
+        emission.enabled = true;
+    }
 }
